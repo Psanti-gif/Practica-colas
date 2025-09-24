@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -5,8 +6,11 @@ import java.util.Scanner;
 public class Metodos {
     private Queue<Turno> colaTurnos = new LinkedList<>();
     private Queue<Turno> atendidos = new LinkedList<>();
+    private ArrayList<Venta> ventas = new ArrayList<>();
     private int contador = 1;
+    private int idVenta = 1;
     private Scanner sc = new Scanner(System.in);
+    
 
     public Turno tomarTurno() {
         Cliente cliente = new Cliente();
@@ -47,6 +51,7 @@ public class Metodos {
 
         double total = 0;
         boolean seguir = true;
+        ArrayList<Articulo> articulosCompra = new ArrayList<>();
 
         while (seguir) {
             System.out.println("1. Agregar producto");
@@ -66,10 +71,19 @@ public class Metodos {
                     articulo.setPrecioUnidad(sc.nextDouble());
                     sc.nextLine();
 
+                    articulosCompra.add(articulo);
                     total += articulo.getPrecioUnidad();
                     System.out.println("Producto agregado. Subtotal: $" + total);
                     break;
                 case 2:
+                    Venta venta = new Venta();
+                    venta.setId(idVenta++);
+                    venta.setCliente(turno.getCliente());
+                    venta.setArticulos(articulosCompra);
+                    venta.setTotal(total);
+
+                    ventas.add(venta);
+
                     System.out.println("Total de la comra: $" + total);
                     atendidos.offer(turno);
                     seguir = false;
@@ -78,6 +92,20 @@ public class Metodos {
                     System.out.println("El cliente decidió no comprar.");
                     seguir = false;
                     break;
+            }
+        }
+    }
+    public void verVentas(){
+        if (ventas.isEmpty()){
+            System.out.println("No hay ventas registradas.");
+        } else{
+            for (Venta v : ventas){
+                System.out.println("Venta #" + v.getId() + " - Cliente: "+ v.getCliente().getNombre());
+                for (Articulo a : v.getArticulos()) {
+                    System.out.println("Producto: " + a.getNombre() + " - $" + a.getPrecioUnidad());
+                }
+                System.out.println("Total: $" + v.getTotal());
+                System.out.println("-------------------");
             }
         }
     }

@@ -9,11 +9,11 @@ public class Menu {
         boolean bandera = true;
 
         while (bandera) {
-            System.out.println("\n--- HU00001: Registro de Clientes ---");
             System.out.println("1. Tomar turno");
             System.out.println("2. Ver turno actual (HU00001)");
             System.out.println("3. Atender cliente (HU00002)");
-            System.out.println("4. Salir");
+            System.out.println("4. Ver ventas (HU00003)");
+            System.out.println("5. Salir");
             System.out.println("Seleccione una opción: ");
 
             opcion = sc.nextInt();
@@ -29,6 +29,9 @@ public class Menu {
                     m.atenderTurno();
                     break;
                 case 4:
+                    m.verVentas();
+                    break;
+                case 5:
                     bandera = false;
                     System.out.println("Saliendo...");
                 

@@ -11,8 +11,9 @@ public class Menu {
         while (bandera) {
             System.out.println("\n--- HU00001: Registro de Clientes ---");
             System.out.println("1. Tomar turno");
-            System.out.println("2. Ver turno actual");
-            System.out.println("3. Salir");
+            System.out.println("2. Ver turno actual (HU00001)");
+            System.out.println("3. Atender cliente (HU00002)");
+            System.out.println("4. Salir");
             System.out.println("Seleccione una opción: ");
 
             opcion = sc.nextInt();
@@ -25,6 +26,9 @@ public class Menu {
                     m.verTurnoActual();
                     break;
                 case 3:
+                    m.atenderTurno();
+                    break;
+                case 4:
                     bandera = false;
                     System.out.println("Saliendo...");
                 

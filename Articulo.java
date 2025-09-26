@@ -1,6 +1,7 @@
 public class Articulo {
     private int id;
     private String nombre;
+    private String categoria;
     private double precioUnidad;
     private int existencias;
     private int estado;
@@ -36,6 +37,11 @@ public class Articulo {
     public void setEstado(int estado) {
         this.estado = estado;
     }
-
+    public String getCategoria() {
+        return categoria;
+    }
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
 
 }

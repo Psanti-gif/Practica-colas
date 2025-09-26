@@ -10,13 +10,17 @@ public class Menu {
 
         while (bandera) {
             System.out.println("1. Tomar turno");
-            System.out.println("2. Ver turno actual (HU00001)");
-            System.out.println("3. Atender cliente (HU00002)");
-            System.out.println("4. Ver ventas (HU00003)");
-            System.out.println("5. Reporte: Clientes atendidos");
-            System.out.println("6. Reporte: Ventas totales");
-            System.out.println("7. Reporte: Productos vendidos");
-            System.out.println("8. Salir");
+            System.out.println("2. Ver turno actual ");
+            System.out.println("3. Ver estado de clientes (Pendientes / Atendidos)");
+            System.out.println("4. Ver inventario");
+            System.out.println("5. Agregar artículo");
+            System.out.println("6. Dar de baja artículo");
+            System.out.println("7. Atender cliente ");
+            System.out.println("8. Ver ventas ");
+            System.out.println("9. Reporte: Clientes atendidos");
+            System.out.println("10. Reporte: Ventas totales");
+            System.out.println("11. Reporte: Productos vendidos");
+            System.out.println("12. Salir");
             System.out.println("Seleccione una opción: ");
 
             opcion = sc.nextInt();
@@ -29,26 +33,39 @@ public class Menu {
                     m.verTurnoActual();
                     break;
                 case 3:
-                    m.atenderTurno();
+                    m.verEstadoGeneral();
                     break;
                 case 4:
-                    m.verVentas();
+                    m.verInventario();
                     break;
                 case 5:
-                    m.reporteClientesAtendidos();
+                    m.agregarArticulo();
                     break;
+
                 case 6:
-                    m.reporteVentasTotales();
+                    m.darDeBajaArticulo();
                     break;
                 case 7:
-                    m.reporteProductosVendidos();
+                    m.atenderTurno();
                     break;
                 case 8:
+                    m.verVentas();
+                    break;
+                case 9:
+                    m.reporteClientesAtendidos();
+                    break;
+                case 10:
+                    m.reporteVentasTotales();
+                    break;
+                case 11:
+                    m.reporteProductosVendidos();
+                    break;
+                case 12:
                     bandera = false;
                     System.out.println("Saliendo...");
                     break;
             }
         }
     }
-    
+
 }

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -106,6 +107,57 @@ public class Metodos {
                 }
                 System.out.println("Total: $" + v.getTotal());
                 System.out.println("-------------------");
+            }
+        }
+    }
+
+    public void reporteClientesAtendidos(){
+        if(atendidos.isEmpty()){
+            System.out.println("No hay clientes atendidos todavía. ");
+        }else{
+            System.out.println("Clientes atendidos: ");
+            for (Turno t : atendidos) {
+                System.out.println("- Turno #" + t.getNumeroTurno()+
+                "| Cliente: "+t.getCliente().getNombre()+
+                "(Cédula: " + t.getCliente().getCedula() + ")");
+            }
+        }
+    }
+
+    public void reporteVentasTotales(){
+        if (ventas.isEmpty()){
+            System.out.println("No hay ventas registradas todavía.");
+        }else{
+            double totalGeneral = 0;
+            for (Venta v : ventas) {
+                totalGeneral += v.getTotal();
+            }
+            System.out.println("Ventas totales registradas: $" + totalGeneral);
+        }
+    }
+    public void reporteProductosVendidos(){
+        if (ventas.isEmpty()){
+            System.out.println("No hay productos vendidos todavía.");
+        }else{
+            System.out.println("Productos vendidos:");
+            ArrayList<String> nombres = new ArrayList<>();
+            ArrayList<Integer> cantidades = new ArrayList<>();
+
+            for (Venta v : ventas) {
+                for (Articulo a : v.getArticulos()) {
+                    String nombre = a.getNombre();
+                    int indice = nombres.indexOf(nombre);
+
+                    if (indice == -1){
+                        nombres.add(nombre);
+                        cantidades.add(1);
+                    }else{
+                        cantidades.set(indice, cantidades.get(indice) + 1);
+                    }
+                }
+            }
+            for (int i = 0; i < nombres.size(); i++) {
+                System.out.println("-" + nombres.get(i) + ": "+ cantidades.get(i) + " unidad(es)");
             }
         }
     }

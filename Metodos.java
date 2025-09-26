@@ -58,6 +58,7 @@ public class Metodos {
             System.out.println("1. Agregar producto");
             System.out.println("2. Terminar compra");
             System.out.println("3. Salir sin comprar");
+            System.out.println("4. Descartar artículo");
             System.out.println("Seleccione: ");
             int opcion = sc.nextInt();
             sc.nextLine();
@@ -77,6 +78,9 @@ public class Metodos {
                     System.out.println("Producto agregado. Subtotal: $" + total);
                     break;
                 case 2:
+                    if(articulosCompra.isEmpty()){
+                        System.out.println("No se puede registrar una venta sin articulos.");
+                    }else{
                     Venta venta = new Venta();
                     venta.setId(idVenta++);
                     venta.setCliente(turno.getCliente());
@@ -87,11 +91,25 @@ public class Metodos {
 
                     System.out.println("Total de la comra: $" + total);
                     atendidos.offer(turno);
+                }
                     seguir = false;
                     break;
                 case 3:
                     System.out.println("El cliente decidió no comprar.");
                     seguir = false;
+                    break;
+                case 4:
+                    if(articulosCompra.isEmpty()){
+                        System.out.println("No hay artículos para descartar.");
+                    }else{
+                        Articulo eliminado = articulosCompra.remove(articulosCompra.size() -1 );
+                        total -= eliminado.getPrecioUnidad();
+                        System.out.println("Se eliminó el artículo: "+ eliminado.getNombre());
+                        System.out.println("Nuevo subtotal: $" + total);
+                    }
+                    break;
+                default:
+                    System.out.println("Opción no válida. ");
                     break;
             }
         }
